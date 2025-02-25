@@ -210,13 +210,40 @@ The PDF generation endpoint creates a formatted invoice document including:
 - Itemized list of products/services
 - Totals (subtotal, tax, total)
 
-## Development
+## API Performance Testing with Postman
 
-The project uses the following dependencies:
-- `express` - Web framework
-- `mongoose` - MongoDB ODM
-- `cors` - Cross-origin resource sharing
-- `dotenv` - Environment variable management
-- `pdfkit` - PDF generation
-- `nodemon` - Development auto-reload
+Postman can be used to test the performance of API endpoints. Follow these steps:
+
+### 1. Load Testing with Collection Runner
+- Open Postman and create a collection with your API requests.
+- Use the **Runner** feature to send multiple requests concurrently.
+- Adjust the **Iterations** and **Concurrency** to simulate real-world loads.
+
+### 2. Response Time Analysis
+- Send a request and check the **Response Time** displayed in Postman.
+- Aim for a response time below **200ms** for optimal performance.
+
+### 3. Stress Testing with Postman Scripts
+- Go to the **Tests** tab in Postman and add:
+```javascript
+pm.expect(responseTime).to.be.below(500);
+```
+- This ensures that responses are under **500ms**, otherwise, it fails.
+
+### 4. Simulating Heavy Traffic with Postman CLI (Newman)
+- Install Newman:
+```bash
+npm install -g newman
+```
+- Run a collection with **high iterations**:
+```bash
+newman run Invoices.postman_collection.json -n 100
+```
+- This sends **100 requests** to measure server resilience.
+
+### 5. Benchmarking API Performance
+- Use Postman’s **Monitor** feature to track API performance over time.
+- Set up scheduled tests and alerts to identify slow endpoints.
+
+By implementing these tests, you can ensure the API handles **high loads efficiently** while maintaining **fast response times**. 🚀
 

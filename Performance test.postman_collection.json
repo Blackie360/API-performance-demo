@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "0ded84bb-ab0c-42b7-97b1-8247fe8168ac",
+		"name": "Performance test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "38959935",
+		"_collection_link": "https://api-101-workshop.postman.co/workspace/New-Team-Workspace~81ea3171-97f7-46d0-b061-cea55ddff2e9/collection/38959935-0ded84bb-ab0c-42b7-97b1-8247fe8168ac?action=share&source=collection_link&creator=38959935"
+	},
+	"item": [
+		{
+			"name": "Create_Invoice",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"client\": {\r\n    \"name\": \"Alice Johnson\",\r\n    \"email\": \"alice.johnson@example.com\",\r\n    \"address\": \"789 Tech Street, San Francisco, CA 94103\"\r\n  },\r\n  \"_id\": \"67bdac90bce374a477337520\",\r\n  \"invoiceNumber\": \"INV-2023-003\",\r\n  \"dueDate\": \"2024-03-01T00:00:00.000Z\",\r\n  \"items\": [\r\n    {\r\n      \"description\": \"Cloud Hosting Setup\",\r\n      \"quantity\": 1,\r\n      \"price\": 1500,\r\n      \"amount\": 1500,\r\n      \"_id\": \"67bdac90bce374a477337521\"\r\n    },\r\n    {\r\n      \"description\": \"Database Optimization\",\r\n      \"quantity\": 5,\r\n      \"price\": 200,\r\n      \"amount\": 1000,\r\n      \"_id\": \"67bdac90bce374a477337522\"\r\n    }\r\n  ],\r\n  \"subtotal\": 2500,\r\n  \"tax\": 250,\r\n  \"total\": 2750,\r\n  \"status\": \"draft\",\r\n  \"date\": \"2025-02-25T11:45:12.123Z\",\r\n  \"createdAt\": \"2025-02-25T11:45:12.125Z\",\r\n  \"updatedAt\": \"2025-02-25T11:45:12.125Z\",\r\n  \"__v\": 0\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/api/invoices"
+			},
+			"response": []
+		},
+		{
+			"name": "Get_invoice",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/invoices?id=67bdac90bce374a477337521",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"invoices"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "67bdac90bce374a477337521"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update_invoice",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/invoices/?id=67bdac90bce374a477337521",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"invoices",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "67bdac90bce374a477337521"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PDF_invoice",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "default"
+		}
+	]
+}

@@ -113,6 +113,45 @@ npm start
 - **GET** `/api/invoices/:id/pdf`
 - Generates and returns a PDF version of the invoice
 
+## API Performance Testing with Postman
+
+To ensure that the API performs optimally, Postman can be used to conduct various performance tests. Below are key tests and their use cases:
+
+### 1. **Load Testing**
+- **Purpose:** Determines how the API handles a high number of requests over a period of time.
+- **Use Case:** Simulate 100+ concurrent users accessing the invoice API to ensure system stability.
+- **How to Test:**
+  - Use Postman's Collection Runner to send multiple requests.
+  - Analyze response times and failure rates.
+
+### 2. **Response Time Testing**
+- **Purpose:** Measures the time taken for the API to respond to requests.
+- **Use Case:** Ensure that API responses are within acceptable limits (e.g., <200ms for basic queries).
+- **How to Test:**
+  - Send multiple requests and check the `responseTime` metric in Postman.
+  - Identify endpoints that may need optimization.
+
+### 3. **Stress Testing**
+- **Purpose:** Tests API behavior under extreme conditions, such as high traffic spikes.
+- **Use Case:** Assess how the API handles an unexpected surge in users (e.g., Black Friday sales).
+- **How to Test:**
+  - Gradually increase the number of requests per second in Postman.
+  - Monitor for timeouts and API failures.
+
+### 4. **Benchmark Testing**
+- **Purpose:** Establishes baseline performance metrics for comparison.
+- **Use Case:** Monitor API performance trends over time and after updates.
+- **How to Test:**
+  - Set standard request-response benchmarks.
+  - Use Postman to compare response times before and after code optimizations.
+
+### 5. **Error Handling Testing**
+- **Purpose:** Ensures the API properly handles invalid inputs and system errors.
+- **Use Case:** Prevent security vulnerabilities and crashes due to bad requests.
+- **How to Test:**
+  - Send invalid JSON data, incorrect HTTP methods, and unauthorized requests.
+  - Verify the correctness of error messages and status codes.
+
 ## Data Model
 
 ### Invoice Schema
@@ -210,40 +249,13 @@ The PDF generation endpoint creates a formatted invoice document including:
 - Itemized list of products/services
 - Totals (subtotal, tax, total)
 
-## API Performance Testing with Postman
+## Development
 
-Postman can be used to test the performance of API endpoints. Follow these steps:
-
-### 1. Load Testing with Collection Runner
-- Open Postman and create a collection with your API requests.
-- Use the **Runner** feature to send multiple requests concurrently.
-- Adjust the **Iterations** and **Concurrency** to simulate real-world loads.
-
-### 2. Response Time Analysis
-- Send a request and check the **Response Time** displayed in Postman.
-- Aim for a response time below **200ms** for optimal performance.
-
-### 3. Stress Testing with Postman Scripts
-- Go to the **Tests** tab in Postman and add:
-```javascript
-pm.expect(responseTime).to.be.below(500);
-```
-- This ensures that responses are under **500ms**, otherwise, it fails.
-
-### 4. Simulating Heavy Traffic with Postman CLI (Newman)
-- Install Newman:
-```bash
-npm install -g newman
-```
-- Run a collection with **high iterations**:
-```bash
-newman run Invoices.postman_collection.json -n 100
-```
-- This sends **100 requests** to measure server resilience.
-
-### 5. Benchmarking API Performance
-- Use Postman’s **Monitor** feature to track API performance over time.
-- Set up scheduled tests and alerts to identify slow endpoints.
-
-By implementing these tests, you can ensure the API handles **high loads efficiently** while maintaining **fast response times**. 🚀
+The project uses the following dependencies:
+- `express` - Web framework
+- `mongoose` - MongoDB ODM
+- `cors` - Cross-origin resource sharing
+- `dotenv` - Environment variable management
+- `pdfkit` - PDF generation
+- `nodemon` - Development auto-reload
 

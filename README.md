@@ -152,6 +152,10 @@ To ensure that the API performs optimally, Postman can be used to conduct variou
   - Send invalid JSON data, incorrect HTTP methods, and unauthorized requests.
   - Verify the correctness of error messages and status codes.
 
+### **Images**
+
+![Screenshot 2025-02-25 194720](https://github.com/user-attachments/assets/18833760-0281-49b8-b772-37a81396c327)
+
 ## Data Model
 
 ### Invoice Schema
